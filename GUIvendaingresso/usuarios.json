@@ -1,0 +1,10 @@
+[
+  {
+    "login": "jm",
+    "senha": "123",
+    "nome": "jmn",
+    "cpf": "045",
+    "email": "jmnf",
+    "isAdmin": false
+  }
+]
