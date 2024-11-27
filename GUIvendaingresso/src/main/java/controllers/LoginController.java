@@ -29,8 +29,16 @@ public class LoginController {
 
         try {
             controller.loginUsuario(login, senha);
-            // Redirecionar para a próxima tela (ex.: listagem de eventos)
-            showAlert("Sucesso", "Login realizado com sucesso!", AlertType.INFORMATION);
+
+            // Redirecionar para a tela de Listagem de Eventos
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/ListagemEventos.fxml"));
+            Parent root = loader.load();
+
+            // Obter o Stage atual e mudar a cena
+            Stage stage = (Stage) fieldLogin.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Listagem de Eventos");
+            stage.show();
         } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erro de Login");

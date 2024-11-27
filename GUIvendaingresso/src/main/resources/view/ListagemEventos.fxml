@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="10" alignment="TOP_CENTER" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="controllers.ListagemEventosController">
+    <Label text="Listagem de Eventos" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+
+    <HBox spacing="10" alignment="CENTER">
+        <TextField fx:id="nomeEventoField" promptText="Filtrar por nome do evento"/>
+        <DatePicker fx:id="dataInicialPicker" promptText="Data Inicial"/>
+        <DatePicker fx:id="dataFinalPicker" promptText="Data Final"/>
+        <Button text="Filtrar" onAction="#handleFiltrar"/>
+    </HBox>
+
+    <TableView fx:id="eventosTable" prefWidth="600">
+        <columns>
+            <TableColumn fx:id="colNome" text="Nome" prefWidth="150"/>
+            <TableColumn fx:id="colData" text="Data" prefWidth="100"/>
+            <TableColumn fx:id="colDescricao" text="Descrição" prefWidth="250"/>
+        </columns>
+    </TableView>
+
+    <HBox spacing="10" alignment="CENTER">
+        <Button text="Ver Detalhes" onAction="#handleVerDetalhes"/>
+    </HBox>
+</VBox>

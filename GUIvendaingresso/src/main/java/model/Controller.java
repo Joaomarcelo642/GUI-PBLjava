@@ -13,8 +13,10 @@
 
 package model;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * A classe Controller gerencia as operações relacionadas a usuários, eventos e ingressos,
