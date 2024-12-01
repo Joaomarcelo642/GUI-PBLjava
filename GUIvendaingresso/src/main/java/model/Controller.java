@@ -23,10 +23,10 @@ import java.util.stream.Collectors;
  * permitindo o cadastro de usuários, eventos, compra e cancelamento de ingressos.
  */
 public class Controller {
-    private List<Usuario> usuarios;
+    public List<Usuario> usuarios;
     private List<Evento> eventos;
     private List<Compra> compras;
-    private DataStore dataStore;
+    public DataStore dataStore;
 
     /**
      * Construtor da classe Controller. Inicializa as listas de usuários, eventos e compras,
@@ -60,22 +60,17 @@ public class Controller {
     /**
      * Cadastra um novo evento, caso o usuário seja administrador.
      *
-     * @param usuario O usuário que está tentando cadastrar o evento.
      * @param nome O nome do evento.
      * @param descricao A descrição do evento.
      * @param data A data do evento.
      * @return O evento cadastrado, se o usuário for administrador.
      * @throws SecurityException Se o usuário não for administrador.
      */
-    public Evento cadastrarEvento(Usuario usuario, String nome, String descricao, Date data) {
-        if (usuario.getAdmin()) {
+    public Evento cadastrarEvento(String nome, String descricao, Date data) {
             Evento evento = new Evento(nome, descricao, data);
             eventos.add(evento);
             dataStore.salvarEventos(eventos);
             return evento;
-        } else {
-            throw new SecurityException("Somente administradores podem cadastrar eventos.");
-        }
     }
 
     /**
@@ -84,10 +79,10 @@ public class Controller {
      * @param nomeEvento O nome do evento.
      * @param assento O assento a ser adicionado ao evento.
      */
-    public void adicionarAssentoEvento(String nomeEvento, String assento) {
+    public void adicionarAssentoEvento(String nomeEvento, String[] assento) {
         for (Evento evento : eventos) {
             if (evento.getNome().equals(nomeEvento)) {
-                evento.adicionarAssento(assento);
+                evento.adicionarVariosAssentos(assento);
                 dataStore.salvarEventos(eventos);
                 return;
             }
@@ -247,6 +242,14 @@ public class Controller {
     public Boolean loginUsuario(String login, String senha) {
         for (Usuario usuario : usuarios) {
             if (usuario.getLogin().equals(login) && usuario.getSenha().equals(senha)) {
+                return true;
+            }
+        } return false;
+    }
+
+    public Boolean loginAdmin(String login, String senha) {
+        for (Usuario usuario : usuarios) {
+            if (usuario.getLogin().equals(login) && usuario.getSenha().equals(senha) && usuario.getAdmin()) {
                 return true;
             }
         } return false;

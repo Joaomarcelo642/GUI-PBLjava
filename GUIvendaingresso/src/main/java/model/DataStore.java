@@ -59,6 +59,7 @@ public class DataStore {
             .excludeFieldsWithModifiers(Modifier.STATIC, Modifier.FINAL, Modifier.TRANSIENT)
             .registerTypeAdapter(Pagamento.class, new PagamentoAdapter())
             .registerTypeAdapter(Usuario.class, new UsuarioAdapter())
+            .registerTypeAdapter(Evento.class, new EventoAdapter())
             .create();
 
     /**

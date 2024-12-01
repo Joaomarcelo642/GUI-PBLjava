@@ -145,6 +145,12 @@ public class Evento {
         assentosdisponiveis.add(assento);
     }
 
+    public void adicionarVariosAssentos(String[] assento){
+        for (String assentos : assento){
+            assentosdisponiveis.add(assentos);
+        }
+    }
+
     /**
      * Remove um assento da lista de assentos disponíveis do evento.
      *

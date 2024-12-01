@@ -1,0 +1,29 @@
+[
+  {
+    "nome": "Festa",
+    "descricao": "Grande festa",
+    "data": "2025-06-25",
+    "assentosDisponiveis": [],
+    "feedbacks": []
+  },
+  {
+    "nome": "Teste",
+    "descricao": "Testando",
+    "data": "2030-01-01",
+    "assentosDisponiveis": [
+      "A1"
+    ],
+    "feedbacks": []
+  },
+  {
+    "nome": "Teste dois",
+    "descricao": "testando novamente",
+    "data": "2030-06-25",
+    "assentosDisponiveis": [
+      "A1",
+      "A2",
+      "A3"
+    ],
+    "feedbacks": []
+  }
+]

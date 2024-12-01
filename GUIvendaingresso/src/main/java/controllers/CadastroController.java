@@ -47,7 +47,6 @@ public class CadastroController {
             alert.setContentText("Usuário cadastrado com sucesso!");
             alert.showAndWait();
 
-            // Voltar para tela de login
             Stage stage = (Stage) fieldLogin.getScene().getWindow();
             SceneManager.changeScene(stage, "Login.fxml");
         } catch (Exception e) {

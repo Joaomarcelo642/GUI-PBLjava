@@ -6,5 +6,13 @@
     "cpf": "045",
     "email": "jmnf",
     "isAdmin": false
+  },
+  {
+    "login": "Admin",
+    "senha": "1234",
+    "nome": "Administrador",
+    "cpf": "242",
+    "email": "admin.com",
+    "isAdmin": true
   }
 ]
