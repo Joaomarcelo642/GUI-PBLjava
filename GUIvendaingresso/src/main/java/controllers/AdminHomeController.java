@@ -47,7 +47,6 @@ public class AdminHomeController {
             String[] assentosArray = assentosTexto.split(",");
             Evento evento = controller.cadastrarEvento(nome, descricao, data);
             controller.adicionarAssentoEvento(nome, assentosArray);
-            //evento.setAssentosDisponiveis(Arrays.asList(assentosArray));
 
             showAlert("Sucesso", "Evento cadastrado com sucesso!", Alert.AlertType.INFORMATION);
 

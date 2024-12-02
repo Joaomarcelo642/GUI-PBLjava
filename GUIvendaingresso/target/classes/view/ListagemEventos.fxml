@@ -40,5 +40,6 @@
 
     <HBox spacing="10" alignment="CENTER">
         <Button text="Ver Detalhes" onAction="#handleVerDetalhes"/>
+        <Button onAction="#handleVoltar" text="Voltar" />
     </HBox>
 </VBox>

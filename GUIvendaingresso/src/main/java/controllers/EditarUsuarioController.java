@@ -2,41 +2,44 @@ package controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
-import model.Usuario;
+import javafx.scene.control.PasswordField;
 import model.Controller;
+import model.Usuario;
 
 public class EditarUsuarioController {
-    @FXML private TextField nomeField;
-    @FXML private TextField cpfField;
-    @FXML private TextField emailField;
-    @FXML private TextField loginField;
-    @FXML private TextField senhaField;
 
-    private Usuario usuario;
+    @FXML
+    private TextField nomeField;
+
+    @FXML
+    private PasswordField senhaField;
+
+    @FXML
+    private TextField cpfField;
+
+    @FXML
+    private TextField emailField;
+
     private Controller controller;
+    private Usuario usuarioAtual;
 
-    public void initialize(Usuario usuario, Controller controller) {
-        this.usuario = usuario;
+    public void setDados(Controller controller, Usuario usuario) {
         this.controller = controller;
+        this.usuarioAtual = usuario;
 
-        // Preenche os campos com os dados do usuário
         nomeField.setText(usuario.getNome());
+        senhaField.setText(usuario.getSenha());
         cpfField.setText(usuario.getCpf());
         emailField.setText(usuario.getEmail());
-        loginField.setText(usuario.getLogin());
-        senhaField.setText(usuario.getSenha());
     }
 
     @FXML
-    private void salvarDados() {
-        // Atualiza os dados do usuário
-        usuario.setNome(nomeField.getText());
-        usuario.setCpf(cpfField.getText());
-        usuario.setEmail(emailField.getText());
-        usuario.setLogin(loginField.getText());
-        usuario.setSenha(senhaField.getText());
+    public void salvarEdicoes() {
+        usuarioAtual.setNome(nomeField.getText());
+        usuarioAtual.setSenha(senhaField.getText());
+        usuarioAtual.setCpf(cpfField.getText());
+        usuarioAtual.setEmail(emailField.getText());
 
-        // Salva no sistema
-        controller.dataStore.salvarUsuarios(controller.usuarios);
+        controller.atualizarUsuario(usuarioAtual);
     }
 }

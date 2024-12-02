@@ -2,42 +2,40 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 
-<GridPane alignment="CENTER" hgap="10" prefHeight="256.0" prefWidth="256.0" vgap="10" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1" fx:controller="controllers.EditarUsuarioController">
-    <Label style="-fx-font-size: 18px;" text="Editar Dados de Usuário" GridPane.columnSpan="2" />
+<VBox alignment="CENTER" prefHeight="219.0" prefWidth="266.0" spacing="10" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1" fx:controller="controllers.EditarUsuarioController">
+    <Label style="-fx-font-size: 16px;" text="Editar Usuário" />
 
-    <Label text="Nome:" GridPane.rowIndex="1" />
-    <TextField fx:id="nomeField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+    <GridPane alignment="CENTER" hgap="10" prefHeight="129.0" prefWidth="195.0" vgap="10">
+        <Label text="Nome:" />
+        <TextField fx:id="nomeField" GridPane.columnIndex="1" />
 
-    <Label text="CPF:" GridPane.rowIndex="2" />
-    <TextField fx:id="cpfField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+        <Label text="Senha:" GridPane.rowIndex="1" />
+        <PasswordField fx:id="senhaField" prefHeight="12.0" prefWidth="149.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
-    <Label text="E-mail:" GridPane.rowIndex="3" />
-    <TextField fx:id="emailField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+        <Label text="CPF:" GridPane.rowIndex="2" />
+        <TextField fx:id="cpfField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
-    <Label text="Login:" GridPane.rowIndex="4" />
-    <TextField fx:id="loginField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+        <Label text="Email:" GridPane.rowIndex="3" />
+        <TextField fx:id="emailField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+      <columnConstraints>
+         <ColumnConstraints />
+         <ColumnConstraints />
+      </columnConstraints>
+      <rowConstraints>
+         <RowConstraints minHeight="10.0" prefHeight="30.0" />
+         <RowConstraints />
+         <RowConstraints minHeight="10.0" prefHeight="30.0" />
+         <RowConstraints minHeight="10.0" prefHeight="30.0" />
+         <RowConstraints minHeight="10.0" prefHeight="30.0" />
+      </rowConstraints>
+    </GridPane>
 
-    <Label text="Senha:" GridPane.rowIndex="5" />
-    <TextField fx:id="senhaField" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-
-    <Button fx:id="salvarButton" alignment="CENTER" text="Salvar" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="6" />
-   <columnConstraints>
-      <ColumnConstraints />
-      <ColumnConstraints />
-      <ColumnConstraints />
-   </columnConstraints>
-   <rowConstraints>
-      <RowConstraints />
-      <RowConstraints />
-      <RowConstraints />
-      <RowConstraints />
-      <RowConstraints />
-      <RowConstraints />
-      <RowConstraints fillHeight="false" valignment="BOTTOM" />
-   </rowConstraints>
-</GridPane>
+    <Button onAction="#salvarEdicoes" text="Salvar" />
+</VBox>

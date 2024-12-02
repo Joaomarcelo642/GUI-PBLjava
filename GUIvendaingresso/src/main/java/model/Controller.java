@@ -239,12 +239,12 @@ public class Controller {
         dataStore.salvarUsuarios(usuarios);
     }
 
-    public Boolean loginUsuario(String login, String senha) {
+    public Usuario loginUsuario(String login, String senha) {
         for (Usuario usuario : usuarios) {
             if (usuario.getLogin().equals(login) && usuario.getSenha().equals(senha)) {
-                return true;
+                return usuario;
             }
-        } return false;
+        }return null;
     }
 
     public Boolean loginAdmin(String login, String senha) {
@@ -255,4 +255,12 @@ public class Controller {
         } return false;
     }
 
+    /**
+     * Atualiza as informações de um usuário.
+     *
+     * @param usuario O usuário a ser atualizado.
+     */
+    public void atualizarUsuario(Usuario usuario) {
+        dataStore.salvarUsuarios(usuarios);
+    }
 }

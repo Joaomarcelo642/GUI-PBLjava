@@ -10,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import model.Controller;
+import model.Usuario;
 
 public class LoginController {
     @FXML private TextField fieldLogin;
@@ -28,7 +29,7 @@ public class LoginController {
         }
 
         try {
-            controller.loginUsuario(login, senha);
+            Usuario usuarioAtual = controller.loginUsuario(login, senha);
 
             if (controller.loginAdmin(login, senha)) {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/AdminHome.fxml"));
@@ -40,6 +41,10 @@ public class LoginController {
             } else {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/ListagemEventos.fxml"));
                 Parent root = loader.load();
+
+                ListagemEventosController listagemEventosController = loader.getController();
+                listagemEventosController.setDados(controller, usuarioAtual);
+
                 Stage stage = (Stage) fieldLogin.getScene().getWindow();
                 stage.setScene(new Scene(root));
                 stage.setTitle("Listagem de Eventos");

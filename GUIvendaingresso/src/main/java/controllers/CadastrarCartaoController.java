@@ -2,31 +2,45 @@ package controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
-import model.Cartao;
-import model.Usuario;
+import javafx.stage.Stage;
 import model.Controller;
+import model.Usuario;
+import model.Cartao;
 
 public class CadastrarCartaoController {
-    @FXML private TextField numeroCartaoField;
-    @FXML private TextField nomeCartaoField;
+    @FXML
+    private TextField nomeTitularField;
+
+    @FXML
+    private TextField numeroCartaoField;
 
     private Usuario usuario;
     private Controller controller;
 
-    public void initialize(Usuario usuario, Controller controller) {
-        this.usuario = usuario;
+    public void setDados(Controller controller, Usuario usuario) {
         this.controller = controller;
+        this.usuario = usuario;
     }
 
     @FXML
-    private void cadastrarCartao() {
-        // Cria o novo cartão
+    private void salvarCartao() {
+        String nomeTitular = nomeTitularField.getText();
         String numeroCartao = numeroCartaoField.getText();
-        String nomeCartao = nomeCartaoField.getText();
-        Cartao cartao = new Cartao(numeroCartao, nomeCartao);
 
-        // Adiciona ao usuário e salva
-        usuario.getFormasDePagamento().add(cartao);
-        controller.dataStore.salvarUsuarios(controller.usuarios);
+        if (!nomeTitular.isEmpty() && !numeroCartao.isEmpty()) {
+            controller.adicionarCartao(usuario, numeroCartao, nomeTitular);
+        }
+
+        fecharJanela();
+    }
+
+    @FXML
+    private void cancelar() {
+        fecharJanela();
+    }
+
+    private void fecharJanela() {
+        Stage stage = (Stage) nomeTitularField.getScene().getWindow();
+        stage.close();
     }
 }

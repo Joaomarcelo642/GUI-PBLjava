@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 import model.Evento;
 import model.Controller;
 import controllers.DetalhesEventoController;
+import model.Usuario;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -44,6 +45,8 @@ public class ListagemEventosController {
 
     private Controller controller = new Controller();
 
+    private Usuario usuarioAtual;
+
     private ObservableList<Evento> eventosList = FXCollections.observableArrayList();
 
     private final SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
@@ -55,6 +58,14 @@ public class ListagemEventosController {
         colDescricao.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getDescricao()));
         carregarEventos();
     }
+
+    public void setDados(Controller controller, Usuario usuarioAtual) {
+        this.controller = controller;
+        this.usuarioAtual = usuarioAtual;
+        System.out.println("Usuário atual configurado na tela de eventos: " + (usuarioAtual != null ? usuarioAtual.getNome() : "null"));
+        carregarEventos();
+    }
+
 
     private void carregarEventos() {
         try {
@@ -101,11 +112,9 @@ public class ListagemEventosController {
         }
 
         try {
-            // Carregar o FXML da tela de detalhes
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/DetalhesEvento.fxml"));
             Parent detalhesRoot = loader.load();
 
-            // Configurar o evento selecionado no controlador
             DetalhesEventoController controller = loader.getController();
             controller.setEvento(eventoSelecionado);
 
@@ -128,9 +137,11 @@ public class ListagemEventosController {
     @FXML
     private void handleEditarUsuario() {
         try {
-            // Carregar tela de edição de dados do usuário
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/EditarUsuario.fxml"));
             Parent root = loader.load();
+
+            EditarUsuarioController editarUsuarioController = loader.getController();
+            editarUsuarioController.setDados(controller, usuarioAtual);
 
             Stage stage = new Stage();
             stage.setTitle("Editar Dados de Usuário");
@@ -143,10 +154,16 @@ public class ListagemEventosController {
 
     @FXML
     private void handleCadastrarCartao() {
+        if (usuarioAtual == null) { // Adiciona validação
+            mostrarAlerta("Erro", "Usuário atual não está configurado. Tente fazer login novamente.");
+            return;
+        }
         try {
-            // Carregar tela de cadastro de cartão de crédito
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/CadastrarCartao.fxml"));
             Parent root = loader.load();
+
+            CadastrarCartaoController cadastrarCartaoController = loader.getController();
+            cadastrarCartaoController.setDados(controller, usuarioAtual);
 
             Stage stage = new Stage();
             stage.setTitle("Cadastrar Cartão de Crédito");

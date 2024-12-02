@@ -2,17 +2,17 @@
   {
     "login": "jm",
     "senha": "123",
-    "nome": "jmn",
-    "cpf": "045",
-    "email": "jmnf",
-    "isAdmin": false
-  },
-  {
-    "login": "Admin",
-    "senha": "1234",
-    "nome": "Administrador",
-    "cpf": "242",
-    "email": "admin.com",
-    "isAdmin": true
+    "nome": "Joao Marcelo",
+    "cpf": "123456789",
+    "email": "joaom@",
+    "isAdmin": false,
+    "ingressos": [],
+    "formasDePagamento": [
+      {
+        "numeroCartao": "1234",
+        "nome": "jm",
+        "forma": "Cartão de Crédito"
+      }
+    ]
   }
 ]

@@ -17,4 +17,6 @@ module com.example.guivendaingresso {
 
     opens controllers to javafx.fxml;
     exports controllers;
+
+    opens model to com.google.gson;
 }
