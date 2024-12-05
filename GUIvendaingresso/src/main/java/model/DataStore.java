@@ -57,6 +57,7 @@ public class DataStore {
     private static final Gson gson = new GsonBuilder()
             .setPrettyPrinting()
             .excludeFieldsWithModifiers(Modifier.STATIC, Modifier.FINAL, Modifier.TRANSIENT)
+            .registerTypeAdapter(Feedback.class, new FeedbackAdapter())
             .registerTypeAdapter(Pagamento.class, new PagamentoAdapter())
             .registerTypeAdapter(Usuario.class, new UsuarioAdapter())
             .registerTypeAdapter(Evento.class, new EventoAdapter())

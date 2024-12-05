@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Pos?>
+<?import javafx.scene.text.Text?>
+
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+<VBox fx:controller="controllers.CompraIngressoController" xmlns:fx="http://javafx.com/fxml" alignment="CENTER" spacing="20">
+    <Text text="Compra de Ingresso" style="-fx-font-size: 24px; -fx-font-weight: bold;" />
+
+    <Text fx:id="eventoNomeText" text="Evento:" />
+    <Text fx:id="assentoText" text="Assento:" />
+    <Text fx:id="precoText" text="Preço:" />
+
+    <ComboBox fx:id="formaPagamentoComboBox">
+        <items>
+            <FXCollections fx:factory="observableArrayList">
+                <String fx:value="Cartão de Crédito"/>
+                <String fx:value="Boleto"/>
+            </FXCollections>
+        </items>
+    </ComboBox>
+
+    <Button fx:id="btnComprar" text="Comprar" onAction="#realizarCompra" />
+
+    <!-- Mensagens de status -->
+    <Label fx:id="statusLabel" text="" style="-fx-text-fill: green;" />
+</VBox>

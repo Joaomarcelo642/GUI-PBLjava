@@ -2,44 +2,69 @@ package model;
 
 import com.google.gson.*;
 import java.lang.reflect.Type;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 public class EventoAdapter implements JsonDeserializer<Evento>, JsonSerializer<Evento> {
 
-    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    @Override
+    public Evento deserialize(JsonElement json, Type type, JsonDeserializationContext context) throws JsonParseException {
+        JsonObject jsonObject = json.getAsJsonObject();
+
+        // Desserializa os campos de Evento
+        String nome = jsonObject.get("nome").getAsString();
+        String descricao = jsonObject.get("descricao").getAsString();
+        Date data = context.deserialize(jsonObject.get("data"), Date.class); // Desserializa a data
+
+        // Desserializa a lista de Feedback
+        List<Feedback> feedbacks = new ArrayList<>();
+        if (jsonObject.has("feedbacks") && jsonObject.get("feedbacks").isJsonArray()) {
+            for (JsonElement feedbackElement : jsonObject.get("feedbacks").getAsJsonArray()) {
+                Feedback feedback = context.deserialize(feedbackElement, Feedback.class);
+                feedbacks.add(feedback);
+            }
+        }
+
+        // Desserializa a lista de assentos
+        List<String> assentosDisponiveis = new ArrayList<>();
+        if (jsonObject.has("assentosDisponiveis") && jsonObject.get("assentosDisponiveis").isJsonArray()) {
+            for (JsonElement assentoElement : jsonObject.get("assentosDisponiveis").getAsJsonArray()) {
+                assentosDisponiveis.add(assentoElement.getAsString());
+            }
+        }
+
+        // Cria o objeto Evento passando os três parâmetros necessários
+        Evento evento = new Evento(nome, descricao, data);
+        evento.setFeedbacks(feedbacks);  // Define a lista de feedbacks
+        evento.setAssentosDisponiveis(assentosDisponiveis);  // Define a lista de assentos
+
+        return evento;
+    }
 
     @Override
-    public JsonElement serialize(Evento src, Type typeOfSrc, JsonSerializationContext context) {
+    public JsonElement serialize(Evento evento, Type type, JsonSerializationContext context) {
         JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("nome", src.getNome());
-        jsonObject.addProperty("descricao", src.getDescricao());
-        jsonObject.addProperty("data", dateFormat.format(src.getData()));
-        jsonObject.add("assentosDisponiveis", context.serialize(src.getAssentosDisponiveis()));
-        jsonObject.add("feedbacks", context.serialize(src.getFeedbacks()));
+
+        // Serializa os campos de Evento
+        jsonObject.addProperty("nome", evento.getNome());
+        jsonObject.addProperty("descricao", evento.getDescricao());
+        jsonObject.add("data", context.serialize(evento.getData()));  // Serializa a data
+
+        // Serializa a lista de Feedback
+        JsonArray feedbackArray = new JsonArray();
+        for (Feedback feedback : evento.getFeedbacks()) {
+            feedbackArray.add(context.serialize(feedback));
+        }
+        jsonObject.add("feedbacks", feedbackArray);
+
+        // Serializa a lista de assentos
+        JsonArray assentosArray = new JsonArray();
+        for (String assento : evento.getAssentosDisponiveis()) {
+            assentosArray.add(new JsonPrimitive(assento));
+        }
+        jsonObject.add("assentosDisponiveis", assentosArray);
+
         return jsonObject;
     }
-
-    @Override
-    public Evento deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
-        JsonObject jsonObject = json.getAsJsonObject();
-        try {
-            String nome = jsonObject.get("nome").getAsString();
-            String descricao = jsonObject.get("descricao").getAsString();
-            Date data = dateFormat.parse(jsonObject.get("data").getAsString());
-            List<String> assentosDisponiveis = context.deserialize(jsonObject.get("assentosDisponiveis"), List.class);
-            List<Feedback> feedbacks = context.deserialize(jsonObject.get("feedbacks"), List.class);
-
-            Evento evento = new Evento(nome, descricao, data);
-            evento.setAssentosDisponiveis(assentosDisponiveis);
-            evento.setFeedbacks(feedbacks);
-            return evento;
-        } catch (ParseException e) {
-            throw new JsonParseException("Erro ao desserializar o campo 'data'", e);
-        }
-    }
 }
-

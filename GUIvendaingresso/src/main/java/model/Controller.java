@@ -199,13 +199,9 @@ public class Controller {
         for (Evento evento2 : eventos) {
             if (evento2.getNome().equals(evento.getNome())) {
                 eventoEncontrado = true;
-                if (evento.isAtivo()) {
-                    throw new RuntimeException("Evento ainda não realizado");
-                } else {
                     Feedback feedback = new Feedback(usuario, avaliacao, comentario);
                     evento.getFeedbacks().add(feedback);
                     dataStore.salvarEventos(eventos);
-                }
                 break;
             }
         }
@@ -223,7 +219,7 @@ public class Controller {
      */
     public void adicionarCartao(Usuario usuario, String numeroCartao, String nome) {
         Cartao cartao = new Cartao(numeroCartao, nome);
-        usuario.getFormasDePagamento().add(cartao);
+        usuario.getCartoes().add(cartao);
         dataStore.salvarUsuarios(usuarios);
     }
 
@@ -235,7 +231,7 @@ public class Controller {
      */
     public void adicionarBoleto(Usuario usuario, String codigoBoleto) {
         Boleto boleto = new Boleto(codigoBoleto);
-        usuario.getFormasDePagamento().add(boleto);
+        usuario.getBoletos().add(boleto);
         dataStore.salvarUsuarios(usuarios);
     }
 

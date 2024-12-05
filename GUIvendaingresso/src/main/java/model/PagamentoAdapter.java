@@ -13,83 +13,43 @@
 
 package model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonToken;
-import com.google.gson.stream.JsonWriter;
+import com.google.gson.*;
+import java.lang.reflect.Type;
 
-import java.io.IOException;
+public class PagamentoAdapter implements JsonSerializer<Pagamento>, JsonDeserializer<Pagamento> {
 
-/**
- * A classe PagamentoAdapter é um adaptador personalizado para a serialização e
- * desserialização de objetos da classe {@link Pagamento} em JSON, utilizando
- * a biblioteca Gson. Esta classe identifica se o objeto é uma instância de
- * {@link Boleto} ou {@link Cartao} e adapta a saída JSON de acordo.
- */
-public class PagamentoAdapter extends TypeAdapter<Pagamento> {
-
-    /**
-     * Serializa um objeto {@link Pagamento} para JSON.
-     *
-     * @param out      O escritor JSON onde a saída será escrita.
-     * @param pagamento O objeto {@link Pagamento} a ser serializado.
-     * @throws IOException Se ocorrer um erro de entrada ou saída.
-     */
     @Override
-    public void write(JsonWriter out, Pagamento pagamento) throws IOException {
-        out.beginObject();
-        out.name("tipo").value(pagamento instanceof Boleto ? "Boleto" : "Cartao");
+    public JsonElement serialize(Pagamento src, Type typeOfSrc, JsonSerializationContext context) {
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("forma", src.getForma());
 
-        if (pagamento instanceof Boleto) {
-            out.name("codigoBoleto").value(((Boleto) pagamento).getCodigoBoleto());
-        } else if (pagamento instanceof Cartao) {
-            out.name("numeroCartao").value(((Cartao) pagamento).getNumero());
-            out.name("nome").value(((Cartao) pagamento).getNome());
+        // Serializar dependendo da classe concreta
+        if (src instanceof Cartao) {
+            Cartao cartao = (Cartao) src;
+            jsonObject.addProperty("numeroCartao", cartao.getNumero());
+            jsonObject.addProperty("nome", cartao.getNome());
+        } else if (src instanceof Boleto) {
+            Boleto boleto = (Boleto) src;
+            jsonObject.addProperty("codigoBoleto", boleto.getCodigoBoleto());
         }
-        out.name("forma").value(pagamento.getForma());
-        out.endObject();
+
+        return jsonObject;
     }
 
-    /**
-     * Desserializa um JSON para um objeto {@link Pagamento}.
-     *
-     * @param in O leitor JSON de onde os dados serão lidos.
-     * @return Um objeto {@link Pagamento} correspondente aos dados JSON.
-     * @throws IOException Se ocorrer um erro de entrada ou saída.
-     */
     @Override
-    public Pagamento read(JsonReader in) throws IOException {
-        in.beginObject();
-        String tipo = null;
-        String forma = null;
-        String codigoBoleto = null;
-        String numeroCartao = null;
-        String nome = null;
+    public Pagamento deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+        JsonObject jsonObject = json.getAsJsonObject();
+        String forma = jsonObject.get("forma").getAsString();
 
-        while (in.hasNext()) {
-            String fieldName = in.nextName();
-            if (fieldName.equals("tipo") && in.peek() == JsonToken.STRING) {
-                tipo = in.nextString();
-            } else if (fieldName.equals("forma") && in.peek() == JsonToken.STRING) {
-                forma = in.nextString();
-            } else if (fieldName.equals("codigoBoleto") && in.peek() == JsonToken.STRING) {
-                codigoBoleto = in.nextString();
-            } else if (fieldName.equals("numeroCartao") && in.peek() == JsonToken.STRING) {
-                numeroCartao = in.nextString();
-            } else if (fieldName.equals("nome") && in.peek() == JsonToken.STRING) {
-                nome = in.nextString();
-            } else {
-                in.skipValue();
-            }
-        }
-        in.endObject();
-
-        if ("Boleto".equals(tipo)) {
-            return new Boleto(codigoBoleto);
-        } else if ("Cartao".equals(tipo)) {
+        if ("Cartão de Crédito".equals(forma)) {
+            String numeroCartao = jsonObject.get("numeroCartao").getAsString();
+            String nome = jsonObject.get("nome").getAsString();
             return new Cartao(numeroCartao, nome);
-        } else {
-            throw new IOException("Tipo de pagamento não identificado: " + tipo);
+        } else if ("Boleto Bancário".equals(forma)) {
+            String codigoBoleto = jsonObject.get("codigoBoleto").getAsString();
+            return new Boleto(codigoBoleto);
         }
+
+        throw new JsonParseException("Forma de pagamento desconhecida: " + forma);
     }
 }

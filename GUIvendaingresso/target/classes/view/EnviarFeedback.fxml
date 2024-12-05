@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="controllers.EnviarFeedbackController" spacing="10" alignment="CENTER" prefWidth="400" prefHeight="300">
+    <Label text="Enviar Feedback" style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+
+    <HBox spacing="10">
+        <Label text="Avaliação:" />
+        <ComboBox fx:id="avaliacaoComboBox" promptText="Selecione uma avaliação">
+            <items>
+                <FXCollections fx:factory="observableArrayList">
+                    <String fx:value="Excelente" />
+                    <String fx:value="Bom" />
+                    <String fx:value="Regular" />
+                    <String fx:value="Ruim" />
+                </FXCollections>
+            </items>
+        </ComboBox>
+    </HBox>
+
+    <VBox spacing="10">
+        <Label text="Comentário:" />
+        <TextArea fx:id="comentarioTextArea" promptText="Escreva seu comentário aqui..." prefHeight="100" />
+    </VBox>
+
+    <HBox spacing="10">
+        <Button text="Enviar" onAction="#enviarFeedback" />
+        <Button text="Cancelar" onAction="#voltar" />
+    </HBox>
+</VBox>

@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" prefHeight="219.0" prefWidth="266.0" spacing="10" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1" fx:controller="controllers.EditarUsuarioController">
+<VBox alignment="CENTER" prefHeight="219.0" prefWidth="266.0" spacing="10" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="controllers.EditarUsuarioController">
     <Label style="-fx-font-size: 16px;" text="Editar Usuário" />
 
     <GridPane alignment="CENTER" hgap="10" prefHeight="129.0" prefWidth="195.0" vgap="10">

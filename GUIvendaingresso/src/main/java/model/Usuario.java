@@ -32,7 +32,9 @@ public class Usuario {
     private String email;
     private Boolean admin;
     private List<Ingresso> ingressos = new ArrayList<>();
-    private List<Pagamento> formasDePagamento = new ArrayList<>();
+    private List<Cartao> cartoes = new ArrayList<>();
+    private List<Boleto> boletos = new ArrayList<>();
+
 
     /**
      * Construtor da classe Usuario.
@@ -181,23 +183,13 @@ public class Usuario {
         this.ingressos = ingressos;
     }
 
-    /**
-     * Obtém a lista das formas de pagamento do usuário.
-     *
-     * @return A lista das formas de pagamento do usuário.
-     */
-    public List<Pagamento> getFormasDePagamento() {
-        return formasDePagamento;
-    }
+    public List<Cartao> getCartoes() {return cartoes;}
 
-    /**
-     * Define a lista das formas de pagamento do usuário.
-     *
-     * @param formasDePagamento A nova lista das formas de pagamento.
-     */
-    public void setFormasDePagamento(List<Pagamento> formasDePagamento) {
-        this.formasDePagamento = formasDePagamento;
-    }
+    public void setCartoes(List<Cartao> cartoes) {this.cartoes = cartoes;}
+
+    public List<Boleto> getBoletos() {return boletos;}
+
+    public void setBoletos(List<Boleto> boletos) {this.boletos = boletos;}
 
     // Métodos para os testes
 
@@ -225,13 +217,6 @@ public class Usuario {
         }
     }
 
-
-    /**
-     * Lista as formas de pagamento disponíveis.
-     */
-    public List<Pagamento> listarFormasDePagamento() {
-        return formasDePagamento;
-    }
 
     // Métodos para comparar objetos
 
@@ -261,5 +246,13 @@ public class Usuario {
     @Override
     public int hashCode() {
         return Objects.hash(login, nome, cpf, email, admin);
+    }
+
+    public Cartao getCartao() {
+        for (Cartao cartao : cartoes) {
+            if (cartao.getNome().equals(this.nome)) {
+                return cartao;
+            }
+        }return null;
     }
 }

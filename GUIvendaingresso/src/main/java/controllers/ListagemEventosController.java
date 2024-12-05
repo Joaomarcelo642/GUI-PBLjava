@@ -26,10 +26,7 @@ public class ListagemEventosController {
     private TextField nomeEventoField;
 
     @FXML
-    private DatePicker dataInicialPicker;
-
-    @FXML
-    private DatePicker dataFinalPicker;
+    private DatePicker dataPicker;
 
     @FXML
     private TableView<Evento> eventosTable;
@@ -80,22 +77,20 @@ public class ListagemEventosController {
     @FXML
     private void handleFiltrar() {
         String nome = nomeEventoField.getText();
-        LocalDate dataInicial = dataInicialPicker.getValue();
-        LocalDate dataFinal = dataFinalPicker.getValue();
+        LocalDate data = dataPicker.getValue();
 
         try {
-            List<Evento> eventosFiltrados = filtrarEventos(nome, dataInicial, dataFinal);
+            List<Evento> eventosFiltrados = filtrarEventos(nome, data);
             eventosList.setAll(eventosFiltrados);
         } catch (Exception e) {
             mostrarAlerta("Erro ao aplicar filtro", e.getMessage());
         }
     }
 
-    private List<Evento> filtrarEventos(String nome, LocalDate dataInicial, LocalDate dataFinal) {
+    private List<Evento> filtrarEventos(String nome, LocalDate data) {
         return controller.listarEventosDisponiveis().stream()
                 .filter(evento -> nome == null || nome.isEmpty() || evento.getNome().toLowerCase().contains(nome.toLowerCase()))
-                .filter(evento -> dataInicial == null || !evento.getData().before(convertToDate(dataInicial)))
-                .filter(evento -> dataFinal == null || !evento.getData().after(convertToDate(dataFinal)))
+                .filter(evento -> data == null || !evento.getData().before(convertToDate(data)))
                 .collect(Collectors.toList());
     }
 
@@ -115,10 +110,9 @@ public class ListagemEventosController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/DetalhesEvento.fxml"));
             Parent detalhesRoot = loader.load();
 
-            DetalhesEventoController controller = loader.getController();
-            controller.setEvento(eventoSelecionado);
+            DetalhesEventoController controllerDetalhes = loader.getController();
+            controllerDetalhes.setDados(eventoSelecionado, usuarioAtual, controller);
 
-            // Exibir a tela de detalhes
             Stage detalhesStage = new Stage();
             detalhesStage.setTitle("Detalhes do Evento");
             detalhesStage.setScene(new Scene(detalhesRoot));

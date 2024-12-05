@@ -1,18 +1,19 @@
 [
   {
-    "login": "jm",
+    "login": "joao",
     "senha": "123",
     "nome": "Joao Marcelo",
-    "cpf": "123456789",
-    "email": "joaom@",
+    "cpf": "1234567890",
+    "email": "joao@",
     "isAdmin": false,
     "ingressos": [],
-    "formasDePagamento": [
+    "cartoes": [
       {
-        "numeroCartao": "1234",
-        "nome": "jm",
+        "numeroCartao": "123123123",
+        "nome": "Joao Marcelo",
         "forma": "Cartão de Crédito"
       }
-    ]
+    ],
+    "boletos": []
   }
 ]

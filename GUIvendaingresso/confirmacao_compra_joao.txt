@@ -1,0 +1,8 @@
+Olá Joao Marcelo,
+Sua compra foi confirmada com sucesso!
+Detalhes da compra:
+Evento: Gladiador II
+Assento: A1
+Preço: R$1.0
+Data do evento: Thu Jan 30 00:00:00 BRT 2025
+Obrigado por sua compra!

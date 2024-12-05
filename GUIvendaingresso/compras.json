@@ -1,0 +1,87 @@
+[
+  {
+    "ingresso": {
+      "evento": {
+        "nome": "Gladiador II",
+        "descricao": "Continuação do épico Gladiador de Ridley Scott",
+        "data": "2025-01-30",
+        "assentosDisponiveis": [
+          "A2",
+          "A3",
+          "A4",
+          "A5",
+          "A5",
+          "A7",
+          "A8",
+          "A9",
+          "A10",
+          "B1",
+          "B2",
+          "B3",
+          "B4",
+          "B5",
+          "B6",
+          "B7",
+          "B8",
+          "B9",
+          "B10"
+        ],
+        "feedbacks": []
+      },
+      "preco": 1.0,
+      "assento": "A1",
+      "isAtivo": true
+    },
+    "usuario": {
+      "login": "joao",
+      "senha": "123",
+      "nome": "Joao Marcelo",
+      "cpf": "1234567890",
+      "email": "joao@",
+      "isAdmin": false,
+      "ingressos": [
+        {
+          "evento": {
+            "nome": "Gladiador II",
+            "descricao": "Continuação do épico Gladiador de Ridley Scott",
+            "data": "2025-01-30",
+            "assentosDisponiveis": [
+              "A2",
+              "A3",
+              "A4",
+              "A5",
+              "A5",
+              "A7",
+              "A8",
+              "A9",
+              "A10",
+              "B1",
+              "B2",
+              "B3",
+              "B4",
+              "B5",
+              "B6",
+              "B7",
+              "B8",
+              "B9",
+              "B10"
+            ],
+            "feedbacks": []
+          },
+          "preco": 1.0,
+          "assento": "A1",
+          "isAtivo": true
+        }
+      ],
+      "cartoes": [
+        {
+          "numeroCartao": "123123123",
+          "nome": "Joao Marcelo",
+          "forma": "Cartão de Crédito"
+        }
+      ],
+      "boletos": []
+    },
+    "confirmacao": true
+  }
+]

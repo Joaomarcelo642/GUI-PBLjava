@@ -10,7 +10,7 @@
             <graphic>
                 <ImageView fitWidth="24" fitHeight="24">
                     <image>
-                        <Image url="@/gear_icon.png"/>
+                        <Image url="@/profile_icon.png"/>
                     </image>
                 </ImageView>
             </graphic>
@@ -25,8 +25,7 @@
 
     <HBox spacing="10" alignment="CENTER">
         <TextField fx:id="nomeEventoField" promptText="Filtrar por nome do evento"/>
-        <DatePicker fx:id="dataInicialPicker" promptText="Data Inicial"/>
-        <DatePicker fx:id="dataFinalPicker" promptText="Data Final"/>
+        <DatePicker fx:id="dataPicker" promptText="Data"/>
         <Button text="Filtrar" onAction="#handleFiltrar"/>
     </HBox>
 

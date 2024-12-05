@@ -12,6 +12,8 @@ import javafx.scene.Scene;
 import model.Controller;
 import model.Usuario;
 
+import java.io.IOException;
+
 public class LoginController {
     @FXML private TextField fieldLogin;
     @FXML private PasswordField fieldSenha;
@@ -24,13 +26,11 @@ public class LoginController {
         String senha = fieldSenha.getText();
 
         if (login.isEmpty() || senha.isEmpty()) {
-            showAlert("Erro", "Login e senha não podem estar vazios!", AlertType.ERROR);
+            exibirErro("Erro", "Login e senha não podem estar vazios!");
             return;
         }
 
         try {
-            Usuario usuarioAtual = controller.loginUsuario(login, senha);
-
             if (controller.loginAdmin(login, senha)) {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/AdminHome.fxml"));
                 Parent root = loader.load();
@@ -38,7 +38,8 @@ public class LoginController {
                 stage.setScene(new Scene(root));
                 stage.setTitle("Admin - Cadastro de Eventos");
                 stage.show();
-            } else {
+            } else if (controller.loginUsuario(login, senha) != null){
+                Usuario usuarioAtual = controller.loginUsuario(login, senha);
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/ListagemEventos.fxml"));
                 Parent root = loader.load();
 
@@ -50,12 +51,9 @@ public class LoginController {
                 stage.setTitle("Listagem de Eventos");
                 stage.show();
             }
-        } catch (Exception e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Erro de Login");
-            alert.setHeaderText("Credenciais inválidas");
-            alert.setContentText("Por favor, verifique seu login e senha.");
-            alert.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+            exibirErro("Erro de login", "redenciais inválidas" + e.getMessage());
         }
     }
 
@@ -65,10 +63,14 @@ public class LoginController {
         SceneManager.changeScene(stage, "Cadastro.fxml");
     }
 
-    private void showAlert(String title, String message, AlertType type) {
-        Alert alert = new Alert(type);
-        alert.setTitle(title);
-        alert.setContentText(message);
+    /**
+     * Exibe uma mensagem de erro em um diálogo.
+     */
+    private void exibirErro(String titulo, String mensagem) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(titulo);
+        alert.setHeaderText(null);
+        alert.setContentText(mensagem);
         alert.showAndWait();
     }
 }
