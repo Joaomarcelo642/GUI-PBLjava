@@ -6,16 +6,36 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.control.MenuItem?>
 <AnchorPane prefHeight="286.0" prefWidth="405.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="controllers.LoginController">
     <children>
         <VBox alignment="CENTER" layoutX="50" layoutY="50" prefHeight="200.0" prefWidth="300.0" spacing="10">
-            <Label style="-fx-font-size: 18px;" text="Login do Sistema" />
+            <Label fx:id="labelTitle" style="-fx-font-size: 18px;" text="Login do Sistema" />
             <TextField fx:id="fieldLogin" promptText="Login" />
             <PasswordField fx:id="fieldSenha" promptText="Senha" />
-            <Button onAction="#handleLogin" text="Entrar" />
-            <Hyperlink onAction="#handleGoToCadastro" text="Cadastrar-se" />
+            <Button fx:id="buttonLogin" onAction="#handleLogin" text="Entrar" />
+            <Hyperlink fx:id="linkCadastro" onAction="#handleGoToCadastro" text="Cadastrar-se" />
         </VBox>
+        <HBox alignment="TOP_RIGHT">
+            <MenuButton fx:id="settingsMenuButton" style="-fx-background-color: transparent;">
+                <graphic>
+                    <ImageView fitWidth="24" fitHeight="24">
+                        <image>
+                            <Image url="@/gear_icon.png"/>
+                        </image>
+                    </ImageView>
+                </graphic>
+                <items>
+                    <MenuItem text="Português" onAction="#switchToPortuguese"/>
+                    <MenuItem text="Inglês" onAction="#switchToEnglish"/>
+                </items>
+            </MenuButton>
+        </HBox>
     </children>
 </AnchorPane>

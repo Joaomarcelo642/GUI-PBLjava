@@ -17,6 +17,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
+import com.google.gson.reflect.TypeToken;
 
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -58,6 +59,7 @@ public class DataStore {
             .setPrettyPrinting()
             .excludeFieldsWithModifiers(Modifier.STATIC, Modifier.FINAL, Modifier.TRANSIENT)
             .registerTypeAdapter(Feedback.class, new FeedbackAdapter())
+            .registerTypeAdapter(Cartao.class, new CartaoAdapter())
             .registerTypeAdapter(Pagamento.class, new PagamentoAdapter())
             .registerTypeAdapter(Usuario.class, new UsuarioAdapter())
             .registerTypeAdapter(Evento.class, new EventoAdapter())

@@ -5,15 +5,313 @@
     "nome": "Joao Marcelo",
     "cpf": "1234567890",
     "email": "joao@",
-    "isAdmin": false,
-    "ingressos": [],
-    "cartoes": [
+    "admin": false,
+    "ingressos": [
       {
-        "numeroCartao": "123123123",
-        "nome": "Joao Marcelo",
-        "forma": "Cartão de Crédito"
+        "evento": {
+          "nome": "Festival de Verão",
+          "descricao": "O maior festival da Bahia",
+          "data": "Jan 27, 2025, 12:00:00 AM",
+          "feedbacks": [],
+          "assentosDisponiveis": [
+            "A1",
+            "A2",
+            "A3",
+            "A4",
+            "A5",
+            "B1",
+            "B2",
+            "B3",
+            "B4",
+            "B5",
+            "C1",
+            "C2",
+            "C3",
+            "C4",
+            "C5",
+            "D1",
+            "D2",
+            "D3",
+            "D4",
+            "D5"
+          ]
+        },
+        "preco": 1.0,
+        "assento": "B1",
+        "isAtivo": true
+      },
+      {
+        "evento": {
+          "nome": "Gladiador II",
+          "descricao": "Continuação do épico Gladiador de Ridley Scott",
+          "data": "Jan 30, 2025, 12:00:00 AM",
+          "feedbacks": [
+            {
+              "usuario": {
+                "login": "joao",
+                "senha": "123",
+                "nome": "Joao Marcelo",
+                "cpf": "1234567890",
+                "email": "joao@",
+                "admin": false,
+                "ingressos": [],
+                "cartoes": [
+                  {
+                    "numero": "",
+                    "nome": "Joao Marcelo"
+                  }
+                ],
+                "boletos": []
+              },
+              "avaliacao": "Gostei",
+              "comentario": "Bom"
+            }
+          ],
+          "assentosDisponiveis": [
+            "A2",
+            "A3",
+            "A4",
+            "A5",
+            "A5",
+            "A7",
+            "A8",
+            "A9",
+            "A10",
+            "B1",
+            "B2",
+            "B3",
+            "B4",
+            "B5",
+            "B6",
+            "B7",
+            "B8",
+            "B9",
+            "B10"
+          ]
+        },
+        "preco": 1.0,
+        "assento": "A10",
+        "isAtivo": true
+      },
+      {
+        "evento": {
+          "nome": "Festival de Verão",
+          "descricao": "O maior festival da Bahia",
+          "data": "Jan 27, 2025, 12:00:00 AM",
+          "feedbacks": [],
+          "assentosDisponiveis": [
+            "A1",
+            "A2",
+            "A3",
+            "A4",
+            "A5",
+            "B2",
+            "B3",
+            "B4",
+            "B5",
+            "C1",
+            "C2",
+            "C3",
+            "C4",
+            "C5",
+            "D1",
+            "D2",
+            "D3",
+            "D4",
+            "D5"
+          ]
+        },
+        "preco": 1.0,
+        "assento": "C1",
+        "isAtivo": true
+      },
+      {
+        "evento": {
+          "nome": "Festival de Verão",
+          "descricao": "O maior festival da Bahia",
+          "data": "Jan 27, 2025, 12:00:00 AM",
+          "feedbacks": [
+            {
+              "usuario": {
+                "login": "joao",
+                "senha": "123",
+                "nome": "Joao Marcelo",
+                "cpf": "1234567890",
+                "email": "joao@",
+                "admin": false,
+                "ingressos": [
+                  {
+                    "evento": {
+                      "nome": "Festival de Verão",
+                      "descricao": "O maior festival da Bahia",
+                      "data": "Jan 27, 2025, 12:00:00 AM",
+                      "feedbacks": [],
+                      "assentosDisponiveis": [
+                        "A1",
+                        "A2",
+                        "A3",
+                        "A4",
+                        "A5",
+                        "B1",
+                        "B2",
+                        "B3",
+                        "B4",
+                        "B5",
+                        "C1",
+                        "C2",
+                        "C3",
+                        "C4",
+                        "C5",
+                        "D1",
+                        "D2",
+                        "D3",
+                        "D4",
+                        "D5"
+                      ]
+                    },
+                    "preco": 1.0,
+                    "assento": "B1",
+                    "isAtivo": true
+                  },
+                  {
+                    "evento": {
+                      "nome": "Gladiador II",
+                      "descricao": "Continuação do épico Gladiador de Ridley Scott",
+                      "data": "Jan 30, 2025, 12:00:00 AM",
+                      "feedbacks": [
+                        {
+                          "usuario": {
+                            "login": "joao",
+                            "senha": "123",
+                            "nome": "Joao Marcelo",
+                            "cpf": "1234567890",
+                            "email": "joao@",
+                            "admin": false,
+                            "ingressos": [],
+                            "cartoes": [
+                              {
+                                "numero": "",
+                                "nome": "Joao Marcelo"
+                              }
+                            ],
+                            "boletos": []
+                          },
+                          "avaliacao": "Gostei",
+                          "comentario": "Bom"
+                        }
+                      ],
+                      "assentosDisponiveis": [
+                        "A2",
+                        "A3",
+                        "A4",
+                        "A5",
+                        "A5",
+                        "A7",
+                        "A8",
+                        "A9",
+                        "A10",
+                        "B1",
+                        "B2",
+                        "B3",
+                        "B4",
+                        "B5",
+                        "B6",
+                        "B7",
+                        "B8",
+                        "B9",
+                        "B10"
+                      ]
+                    },
+                    "preco": 1.0,
+                    "assento": "A10",
+                    "isAtivo": true
+                  },
+                  {
+                    "evento": {
+                      "nome": "Festival de Verão",
+                      "descricao": "O maior festival da Bahia",
+                      "data": "Jan 27, 2025, 12:00:00 AM",
+                      "feedbacks": [],
+                      "assentosDisponiveis": [
+                        "A1",
+                        "A2",
+                        "A3",
+                        "A4",
+                        "A5",
+                        "B2",
+                        "B3",
+                        "B4",
+                        "B5",
+                        "C1",
+                        "C2",
+                        "C3",
+                        "C4",
+                        "C5",
+                        "D1",
+                        "D2",
+                        "D3",
+                        "D4",
+                        "D5"
+                      ]
+                    },
+                    "preco": 1.0,
+                    "assento": "C1",
+                    "isAtivo": true
+                  }
+                ],
+                "cartoes": [
+                  {
+                    "numero": "1234567890",
+                    "nome": "Joao M N Fernandes"
+                  }
+                ],
+                "boletos": [
+                  {
+                    "codigoBoleto": "BOLETO-828496",
+                    "forma": "Boleto Bancário"
+                  }
+                ]
+              },
+              "avaliacao": "Mal posso esperar!!!!",
+              "comentario": "Excelente"
+            }
+          ],
+          "assentosDisponiveis": [
+            "A1",
+            "A2",
+            "A3",
+            "A4",
+            "A5",
+            "B2",
+            "B3",
+            "B4",
+            "B5",
+            "C3",
+            "C4",
+            "C5",
+            "D1",
+            "D2",
+            "D3",
+            "D4",
+            "D5"
+          ]
+        },
+        "preco": 1.0,
+        "assento": "C2",
+        "isAtivo": true
       }
     ],
-    "boletos": []
+    "cartoes": [
+      {
+        "numero": "1234567890",
+        "nome": "Joao M N Fernandes"
+      }
+    ],
+    "boletos": [
+      {
+        "codigoBoleto": "BOLETO-871469",
+        "forma": "Boleto Bancário"
+      }
+    ]
   }
 ]

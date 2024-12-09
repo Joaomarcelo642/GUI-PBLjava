@@ -36,7 +36,7 @@ public class AdminHomeController {
         String assentosTexto = fieldAssentos.getText();
 
         if (nome.isEmpty() || descricao.isEmpty() || dataTexto.isEmpty() || assentosTexto.isEmpty()) {
-            showAlert("Erro", "Todos os campos devem ser preenchidos.", Alert.AlertType.ERROR);
+            mostrarAlerta("Erro", "Todos os campos devem ser preenchidos.", Alert.AlertType.ERROR);
             return;
         }
 
@@ -48,7 +48,7 @@ public class AdminHomeController {
             Evento evento = controller.cadastrarEvento(nome, descricao, data);
             controller.adicionarAssentoEvento(nome, assentosArray);
 
-            showAlert("Sucesso", "Evento cadastrado com sucesso!", Alert.AlertType.INFORMATION);
+            mostrarAlerta("Sucesso", "Evento cadastrado com sucesso!", Alert.AlertType.INFORMATION);
 
             fieldNome.clear();
             fieldDescricao.clear();
@@ -56,9 +56,9 @@ public class AdminHomeController {
             fieldAssentos.clear();
 
         } catch (ParseException e) {
-            showAlert("Erro", "Formato de data inválido. Use dd/MM/yyyy.", Alert.AlertType.ERROR);
+            mostrarAlerta("Erro", "Formato de data inválido. Use dd/MM/yyyy.", Alert.AlertType.ERROR);
         } catch (Exception e) {
-            showAlert("Erro", "Erro ao cadastrar evento: " + e.getMessage(), Alert.AlertType.ERROR);
+            mostrarAlerta("Erro", "Erro ao cadastrar evento: " + e.getMessage(), Alert.AlertType.ERROR);
         }
     }
 
@@ -68,7 +68,7 @@ public class AdminHomeController {
         SceneManager.changeScene(stage, "Login.fxml");
     }
 
-    private void showAlert(String titulo, String mensagem, Alert.AlertType tipo) {
+    private void mostrarAlerta(String titulo, String mensagem, Alert.AlertType tipo) {
         Alert alert = new Alert(tipo);
         alert.setTitle(titulo);
         alert.setHeaderText(null);

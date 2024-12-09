@@ -14,7 +14,7 @@
     <Text fx:id="assentoText" text="Assento:" />
     <Text fx:id="precoText" text="Preço:" />
 
-    <ComboBox fx:id="formaPagamentoComboBox">
+    <ComboBox fx:id="formaPagamentoComboBox" onAction="#atualizarFormaPagamento">
         <items>
             <FXCollections fx:factory="observableArrayList">
                 <String fx:value="Cartão de Crédito"/>
@@ -22,6 +22,9 @@
             </FXCollections>
         </items>
     </ComboBox>
+
+    <!-- Novo ComboBox para seleção de cartão -->
+    <ComboBox fx:id="cartaoComboBox" promptText="Selecione um cartão" visible="false" />
 
     <Button fx:id="btnComprar" text="Comprar" onAction="#realizarCompra" />
 

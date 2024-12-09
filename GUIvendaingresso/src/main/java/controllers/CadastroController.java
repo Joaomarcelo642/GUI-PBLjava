@@ -35,7 +35,7 @@ public class CadastroController {
         boolean isAdmin = checkBoxAdmin.isSelected();
 
         if (login.isEmpty() || senha.isEmpty() || nome.isEmpty() || cpf.isEmpty() || email.isEmpty()) {
-            showAlert("Erro", "Todos os campos são obrigatórios!", AlertType.ERROR);
+            mostrarAlerta("Erro", "Todos os campos são obrigatórios!", AlertType.ERROR);
             return;
         }
 
@@ -56,8 +56,6 @@ public class CadastroController {
             alert.setContentText(e.getMessage());
             alert.showAndWait();
         }
-
-        //showAlert("Sucesso", "Usuário cadastrado com sucesso!", AlertType.INFORMATION);
     }
 
 
@@ -67,7 +65,7 @@ public class CadastroController {
         SceneManager.changeScene(stage, "Login.fxml");
     }
 
-    private void showAlert(String title, String message, AlertType type) {
+    private void mostrarAlerta(String title, String message, AlertType type) {
         Alert alert = new Alert(type);
         alert.setTitle(title);
         alert.setContentText(message);

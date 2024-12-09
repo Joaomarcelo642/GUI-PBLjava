@@ -76,4 +76,10 @@ public class Cartao extends Pagamento {
     public void setNome(String nome) {
         this.nome = nome;
     }
+
+    @Override
+    public String toString() {
+        return numeroCartao;  // Exibe apenas o número do cartão
+    }
 }
+

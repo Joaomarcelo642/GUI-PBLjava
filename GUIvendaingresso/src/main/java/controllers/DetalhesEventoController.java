@@ -37,7 +37,7 @@ public class DetalhesEventoController {
 
     private Controller controller;
 
-    private Ingresso ingressoSelecionado; // Variável para armazenar o ingresso selecionado
+    private Ingresso ingressoSelecionado;
 
     private final SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
@@ -61,7 +61,6 @@ public class DetalhesEventoController {
             ingressoSelecionado = new Ingresso(evento, 20, assentoSelecionado);
         });
 
-        // Feedbacks (formatados como texto)
         feedbacksListView.getItems().setAll(evento.getFeedbacks().stream()
                 .map(this::formatarFeedback)
                 .toList());
@@ -87,14 +86,14 @@ public class DetalhesEventoController {
             Parent root = loader.load();
 
             CompraIngressoController compraController = loader.getController();
-            compraController.setDados(ingressoSelecionado, usuarioLogado, controller);
+            compraController.setDados(ingressoSelecionado, usuarioLogado, controller, this);
 
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
-            exibirErro("Erro ao abrir tela de compra", "Não foi possível abrir a tela de compra de ingresso. " + e.getMessage());
+            mostrarAlerta("Erro ao abrir tela de compra", "Não foi possível abrir a tela de compra de ingresso. " + e.getMessage());
         }
     }
 
@@ -105,14 +104,14 @@ public class DetalhesEventoController {
             Parent root = loader.load();
 
             EnviarFeedbackController feedbackController = loader.getController();
-            feedbackController.setDados(evento, usuarioLogado, controller);
+            feedbackController.setDados(evento, usuarioLogado, controller, this);
 
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
-            exibirErro("Erro ao abrir tela de feedback", "Não foi possível abrir a tela de feedback. " + e.getMessage());
+            mostrarAlerta("Erro ao abrir tela de feedback", "Não foi possível abrir a tela de feedback. " + e.getMessage());
         }
     }
 
@@ -127,11 +126,21 @@ public class DetalhesEventoController {
     /**
      * Exibe uma mensagem de erro em um diálogo.
      */
-    private void exibirErro(String titulo, String mensagem) {
+    private void mostrarAlerta(String titulo, String mensagem) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(titulo);
         alert.setHeaderText(null);
         alert.setContentText(mensagem);
         alert.showAndWait();
+    }
+
+    public void atualizarAssentos() {
+        assentosListView.getItems().setAll(evento.getAssentosDisponiveis());
+    }
+
+    public void atualizarFeedbacks() {
+        feedbacksListView.getItems().setAll(evento.getFeedbacks().stream()
+                .map(this::formatarFeedback)
+                .toList());
     }
 }
