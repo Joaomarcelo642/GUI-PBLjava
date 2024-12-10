@@ -16,6 +16,9 @@ package model;
 import com.google.gson.*;
 import java.lang.reflect.Type;
 
+/**
+ * Adapter para personalizar a deserialização de Pagamento com Gson.
+ */
 public class PagamentoAdapter implements JsonSerializer<Pagamento>, JsonDeserializer<Pagamento> {
 
     @Override
@@ -23,7 +26,6 @@ public class PagamentoAdapter implements JsonSerializer<Pagamento>, JsonDeserial
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("forma", src.getForma());
 
-        // Serializar dependendo da classe concreta
         if (src instanceof Cartao) {
             Cartao cartao = (Cartao) src;
             jsonObject.addProperty("numeroCartao", cartao.getNumero());

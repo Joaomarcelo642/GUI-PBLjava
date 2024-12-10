@@ -2,7 +2,7 @@ Olá Joao Marcelo,
 Sua compra foi confirmada com sucesso!
 Detalhes da compra:
 Evento: Festival de Verão
-Assento: C2
+Assento: D5
 Preço: R$1.0
 Data do evento: Mon Jan 27 00:00:00 BRT 2025
 Obrigado por sua compra!

@@ -51,5 +51,10 @@ public class Boleto extends Pagamento {
     public void setCodigoBoleto(String codigoBoleto) {
         this.codigoBoleto = codigoBoleto;
     }
+
+    @Override
+    public String toString() {
+        return codigoBoleto;
+    }
 }
 

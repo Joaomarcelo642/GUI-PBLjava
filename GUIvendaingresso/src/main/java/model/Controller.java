@@ -235,14 +235,30 @@ public class Controller {
         dataStore.salvarUsuarios(usuarios);
     }
 
+    /**
+     * Realiza o login de um usuário com base nas credenciais fornecidas.
+     *
+     * @param login O nome de usuário para autenticação.
+     * @param senha A senha correspondente ao nome de usuário.
+     * @return O objeto {@link Usuario} correspondente ao login e senha fornecidos,
+     *         ou {@code null} se não encontrar um usuário com as credenciais informadas.
+     */
     public Usuario loginUsuario(String login, String senha) {
         for (Usuario usuario : usuarios) {
             if (usuario.getLogin().equals(login) && usuario.getSenha().equals(senha)) {
                 return usuario;
             }
-        }return null;
+        } return null;
     }
 
+    /**
+     * Realiza o login de um administrador com base nas credenciais fornecidas.
+     *
+     * @param login O nome de usuário para autenticação.
+     * @param senha A senha correspondente ao nome de usuário.
+     * @return {@code true} se o login for bem-sucedido e o usuário for um administrador,
+     *         {@code false} caso contrário (se as credenciais forem inválidas ou o usuário não for administrador).
+     */
     public Boolean loginAdmin(String login, String senha) {
         for (Usuario usuario : usuarios) {
             if (usuario.getLogin().equals(login) && usuario.getSenha().equals(senha) && usuario.getAdmin()) {
@@ -250,6 +266,7 @@ public class Controller {
             }
         } return false;
     }
+
 
     /**
      * Atualiza as informações de um usuário.

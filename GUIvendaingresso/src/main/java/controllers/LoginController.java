@@ -41,7 +41,7 @@ public class LoginController implements Initializable {
         String senha = fieldSenha.getText();
 
         if (login.isEmpty() || senha.isEmpty()) {
-            mostrarAlerta(bundle.getString("login_error_title"), bundle.getString("login_empty_error"));
+            mostrarAlerta("Erro", "É necessário preencher todos os campos");
             return;
         }
 
@@ -66,10 +66,12 @@ public class LoginController implements Initializable {
                 stage.setScene(new Scene(root));
                 stage.setTitle(bundle.getString("event_list_title"));
                 stage.show();
+            } else{
+                mostrarAlerta("Erro", "Login ou senha incorretos");
             }
         } catch (IOException e) {
             e.printStackTrace();
-            mostrarAlerta(bundle.getString("login_error_title"), bundle.getString("login_error_credentials") + ": " + e.getMessage());
+            mostrarAlerta("Erro no login", "Credenciais inválidas" + e.getMessage());
         }
     }
 

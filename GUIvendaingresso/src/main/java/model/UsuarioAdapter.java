@@ -1,3 +1,16 @@
+/*******************************************************************************
+ Sistema Operacional: Windows 10 - 64 Bits
+ Linguagem: JAVA 21.0.4
+ Autor: João Marcelo Nascimento Fernandes
+ Componente Curricular: EXA 863 - MI Programção
+ Concluido em: 09/12/2024
+ Declaro que este código foi elaborado por mim de forma individual e não contém nenhum
+ trecho de código de outro colega ou de outro autor, tais como provindos de livros e
+ apostilas, e páginas ou documentos eletrônicos da Internet. Qualquer trecho de código
+ de outra autoria que não a minha está destacado com uma citação para o autor e a fonte
+ do código, e estou ciente que estes trechos não serão considerados para fins de avaliação.
+ ******************************************************************************************/
+
 package model;
 
 import com.google.gson.*;
@@ -5,13 +18,15 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Adapter para personalizar a deserialização de Usuario com Gson.
+ */
 public class UsuarioAdapter implements JsonDeserializer<Usuario>, JsonSerializer<Usuario> {
 
     @Override
     public Usuario deserialize(JsonElement json, Type type, JsonDeserializationContext context) throws JsonParseException {
         JsonObject jsonObject = json.getAsJsonObject();
 
-        // Desserializa os campos básicos de Usuario
         String login = jsonObject.get("login").getAsString();
         String senha = jsonObject.get("senha").getAsString();
         String nome = jsonObject.get("nome").getAsString();
@@ -21,10 +36,8 @@ public class UsuarioAdapter implements JsonDeserializer<Usuario>, JsonSerializer
                 ? jsonObject.get("admin").getAsBoolean()
                 : false;
 
-        // Cria o objeto Usuario
         Usuario usuario = new Usuario(login, senha, nome, cpf, email, admin);
 
-        // Desserializa a lista de ingressos
         if (jsonObject.has("ingressos") && jsonObject.get("ingressos").isJsonArray()) {
             List<Ingresso> ingressos = new ArrayList<>();
             for (JsonElement ingressoElement : jsonObject.get("ingressos").getAsJsonArray()) {
@@ -34,7 +47,6 @@ public class UsuarioAdapter implements JsonDeserializer<Usuario>, JsonSerializer
             usuario.setIngressos(ingressos);
         }
 
-        // Desserializa a lista de cartões
         if (jsonObject.has("cartoes") && jsonObject.get("cartoes").isJsonArray()) {
             List<Cartao> cartoes = new ArrayList<>();
             for (JsonElement cartaoElement : jsonObject.get("cartoes").getAsJsonArray()) {
@@ -44,7 +56,6 @@ public class UsuarioAdapter implements JsonDeserializer<Usuario>, JsonSerializer
             usuario.setCartoes(cartoes);
         }
 
-        // Desserializa a lista de boletos
         if (jsonObject.has("boletos") && jsonObject.get("boletos").isJsonArray()) {
             List<Boleto> boletos = new ArrayList<>();
             for (JsonElement boletoElement : jsonObject.get("boletos").getAsJsonArray()) {
@@ -61,7 +72,6 @@ public class UsuarioAdapter implements JsonDeserializer<Usuario>, JsonSerializer
     public JsonElement serialize(Usuario usuario, Type type, JsonSerializationContext context) {
         JsonObject jsonObject = new JsonObject();
 
-        // Serializa os campos básicos de Usuario
         jsonObject.addProperty("login", usuario.getLogin());
         jsonObject.addProperty("senha", usuario.getSenha());
         jsonObject.addProperty("nome", usuario.getNome());
@@ -69,21 +79,18 @@ public class UsuarioAdapter implements JsonDeserializer<Usuario>, JsonSerializer
         jsonObject.addProperty("email", usuario.getEmail());
         jsonObject.addProperty("admin", usuario.getAdmin());
 
-        // Serializa a lista de ingressos
         JsonArray ingressosArray = new JsonArray();
         for (Ingresso ingresso : usuario.getIngressos()) {
             ingressosArray.add(context.serialize(ingresso));
         }
         jsonObject.add("ingressos", ingressosArray);
 
-        // Serializa a lista de cartões
         JsonArray cartoesArray = new JsonArray();
         for (Cartao cartao : usuario.getCartoes()) {
             cartoesArray.add(context.serialize(cartao));
         }
         jsonObject.add("cartoes", cartoesArray);
 
-        // Serializa a lista de boletos
         JsonArray boletosArray = new JsonArray();
         for (Boleto boleto : usuario.getBoletos()) {
             boletosArray.add(context.serialize(boleto));

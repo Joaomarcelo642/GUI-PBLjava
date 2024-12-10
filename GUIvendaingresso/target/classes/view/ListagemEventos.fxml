@@ -17,6 +17,7 @@
             <items>
                 <MenuItem text="Editar Dados de Usuário" onAction="#handleEditarUsuario"/>
                 <MenuItem text="Cadastrar Cartão de Crédito" onAction="#handleCadastrarCartao"/>
+                <MenuItem text="Meus Ingressos" onAction="#handleIngressosComprados"/>
             </items>
         </MenuButton>
     </HBox>

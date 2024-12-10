@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="TOP_CENTER" prefHeight="266.0" prefWidth="506.0" spacing="10" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.IngressosCompradosController">
+    <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Meus ingressos" />
+
+    <Label style="-fx-font-size: 14px; -fx-font-weight: bold;" text="Ingressos:" />
+    <ListView fx:id="ingressosListView" prefHeight="200" />
+
+</VBox>

@@ -59,7 +59,6 @@ public class ListagemEventosController {
     public void setDados(Controller controller, Usuario usuarioAtual) {
         this.controller = controller;
         this.usuarioAtual = usuarioAtual;
-        System.out.println("Usuário atual configurado na tela de eventos: " + (usuarioAtual != null ? usuarioAtual.getNome() : "null"));
         carregarEventos();
     }
 
@@ -168,6 +167,23 @@ public class ListagemEventosController {
         }
     }
 
+    @FXML
+    private void handleIngressosComprados() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/IngressosComprados.fxml"));
+            Parent root = loader.load();
+
+            IngressosCompradosController ingressosCompradosController = loader.getController();
+            ingressosCompradosController.setDados(usuarioAtual);
+
+            Stage stage = new Stage();
+            stage.setTitle("Meus Ingressos");
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (Exception e) {
+            mostrarAlerta("Erro", "Não foi possível abrir a tela de ingressos de comprados");
+        }
+    }
 
     private void mostrarAlerta(String titulo, String mensagem) {
         Alert alert = new Alert(Alert.AlertType.ERROR);

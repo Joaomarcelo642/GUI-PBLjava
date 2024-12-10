@@ -87,14 +87,12 @@ public class CompraIngressoController {
             controller.comprarIngresso(usuario, ingresso.getEvento().getNome(), ingresso.getAssento());
             gerarBoleto();
             detalhesEventoController.atualizarAssentos();
-            statusLabel.setText("Compra realizada com sucesso! Boleto gerado.");
+            statusLabel.setText("Compra realizada com sucesso! Boleto gerado." + usuario.getUltimoBoleto());
         }
     }
 
     private void gerarBoleto() {
         String codigoBoleto = "BOLETO-" + new Random().nextInt(999999);
         controller.adicionarBoleto(usuario, codigoBoleto);
-        System.out.println("Boleto gerado " + codigoBoleto);
-        System.out.println("para o usuário " + usuario.getNome());
     }
 }

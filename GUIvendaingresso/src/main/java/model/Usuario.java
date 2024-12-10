@@ -248,11 +248,28 @@ public class Usuario {
         return Objects.hash(login, nome, cpf, email, admin);
     }
 
+    /**
+     * Retorna um cartão pertencente à lista de cartões.
+     *
+     * @return m cartão pertencente à lista de cartões ou null se a lista estiver vazia.
+     */
     public Cartao getCartao() {
         for (Cartao cartao : cartoes) {
             if (cartao.getNome().equals(this.nome)) {
                 return cartao;
             }
         }return null;
+    }
+
+    /**
+     * Retorna o último boleto adicionado à lista de boletos.
+     *
+     * @return O último boleto adicionado ou null se a lista estiver vazia.
+     */
+    public Boleto getUltimoBoleto() {
+        if (boletos.isEmpty()) {
+            return null;
+        }
+        return boletos.get(boletos.size() - 1);
     }
 }
